@@ -1,52 +1,48 @@
 class Player{
   
-  float playersize;
+  Body body;
+  float w,h;
   
-  Player()
+  
+  Player(float x, float y)
   {
-    playersize = 100;
+    w = 100;
+    h = 100;
+    
+    BodyDef bd = new BodyDef();
+    bd.type = BodyType.DYNAMIC;
+    bd.position.set(box2d.coordPixelsToWorld(x,y));
+    body = box2d.createBody(bd);
+    
+    PolygonShape sd = new PolygonShape();
+    float box2dW = box2d.scalarPixelsToWorld(w/2);
+    float box2dH = box2d.scalarPixelsToWorld(h/2);
+    sd.setAsBox(box2dW, box2dH);
+    
+    FixtureDef fd = new FixtureDef();
+    fd.shape = sd;
+    // Parameters that affect physics
+    fd.density = 1;
+    fd.friction = 0.3;
+    fd.restitution = 0.5;
+
+    // Attach Fixture to Body               
+    body.createFixture(fd);
   }
   
-  void display(float midX, float midY)
-  { 
-    //Arms
-    fill(#F58FC2);
-    ellipse(midX-40,midY,40,30);
-    ellipse(midX+40,midY,40,30);
-    
-    //Feet
-    fill(#9B1E1E);
-    arc(midX-20, midY+40, 40, 30, 0, PI/.5, CHORD);//kirbys feet  
-    arc(midX+20, midY+40, 40, 30, 0, PI/.5, CHORD);
-    
-    //Body
+  void display()
+  {
+    // We need the Body’s location and angle
+    Vec2 pos = box2d.getBodyPixelCoord(body);    
+    float a = body.getAngle();
+
+    pushMatrix();
+    translate(pos.x,pos.y);    // Using the Vec2 position and float angle to
+    rotate(-a);              // translate and rotate the rectangle
+    fill(175);
     stroke(0);
-    fill(#F58FC2);
-    ellipse(midX, midY, playersize, playersize);
-    
-    fill(0);
-    ellipse(midX-10, midY-15, 10, 30);//kirbys eye sockets
-    ellipse(midX+10, midY-15, 10, 30);
- 
-    fill(255);
-    ellipse(midX-10, midY-22, 10, 15);//kirbys pupils
-    ellipse(midX+10, midY-22, 10, 15);
- 
-    fill(#483989);
-    ellipse(midX-10, midY-6, 9, 12);//eye shadow
-    ellipse(midX+10, midY-6, 9, 12);
- 
-    fill(0);
-    ellipse(midX-11, midY-10, 6, 6);//eye shadow hard to draw cleanly..
-    ellipse(midX+9, midY-10, 6, 6);
- 
-    noStroke();
-    fill(#FF4B4B);
-    ellipse(midX-22, midY, 15, 8);  // blush cheeks
-    ellipse(midX+22, midY, 15, 8);
- 
-    stroke(0);
-    fill(#C42222);
-    arc(midX, midY+8, 20, 20, 0, PI, CHORD); //kirbys mouth
+    rectMode(CENTER);
+    rect(0,0,w,h);
+    popMatrix();
   }
 }

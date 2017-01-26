@@ -14,17 +14,16 @@ void setup()
   
   box2d = new Box2DProcessing(this);  
   box2d.createWorld();
-  
-  
-  
+  //box2d.setGravity(0, -10);
 }
-
-Player p1 = new Player();
-Ground floor = new Ground(width/2, height-25);
-
 void draw()
 {
+  
+  background(255);
+  Boundary b1 = new Boundary(width/2, height-50, width, 100);
+  Player p1 = new Player(width/2, 0);
   box2d.step();
-  p1.display(width/2, height/2);
-  floor.display();
+  
+  p1.display();
+  b1.display();
 }
