@@ -1,13 +1,11 @@
 class Player{
   
   Body body;
-  float x, y, w, h;
+  float w, h;
   
   
-  Player()
+  Player(float x, float y)
   {
-    x = width/2;
-    y = 0;
     w = 50;
     h = 50;
     
@@ -42,7 +40,7 @@ class Player{
     fill(175);
     stroke(0);
     rectMode(CENTER);
-    rect(x,y,w,h);
+    rect(0,0,w,h);
     popMatrix();
   }
 }
