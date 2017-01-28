@@ -15,7 +15,7 @@ void setup()
 {
   size(1000,500);
   smooth();
-  background(255);
+ 
   
   box2d = new Box2DProcessing(this); 
   box2d.createWorld();
@@ -29,12 +29,13 @@ void draw()
 {
   background(255);
   box2d.step();
+  float groundlevel = height - 50;
   
   
    for (Player b: players) {
     b.display();
   }
   
-  Boundary b1 = new Boundary(width/2, height-50, width, 100);
+  Boundary b1 = new Boundary(width/2, groundlevel, width, 100);
   b1.display();
 }

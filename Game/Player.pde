@@ -22,17 +22,21 @@ class Player{
     FixtureDef fd = new FixtureDef();
     fd.shape = sd;
     
-    fd.density = 1;
-    fd.friction = 0.3;
-    fd.restitution = 0.5;
+    fd.density = 0.5;
+    fd.friction = 0.5;
+    fd.restitution = 0.3;
     
     body.createFixture(fd);
+    
+    //body.setLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
+    //body.setAngularVelocity(random(-5, 5));
   }
   
   void display()
   {
     Vec2 pos = box2d.getBodyPixelCoord(body);
     float a = body.getAngle();
+    body.setAngularVelocity(random(-5, 5));
     
     pushMatrix();
     translate(pos.x, pos.y);
