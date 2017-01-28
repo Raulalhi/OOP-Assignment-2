@@ -2,16 +2,17 @@ class Player{
   
   Body body;
   float w, h;
+  float groundlevel = height - 50;
   
   
-  Player(float x, float y)
+  Player()
   {
     w = 50;
     h = 50;
     
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
-    bd.position.set(box2d.coordPixelsToWorld(x,y));
+    bd.position.set(box2d.coordPixelsToWorld(100,groundlevel - 25));
     body = box2d.createBody(bd);
     
     PolygonShape sd = new PolygonShape();
@@ -36,7 +37,7 @@ class Player{
   {
     Vec2 pos = box2d.getBodyPixelCoord(body);
     float a = body.getAngle();
-    body.setAngularVelocity(random(-5, 5));
+    body.setLinearVelocity(new Vec2(5,-1));
     
     pushMatrix();
     translate(pos.x, pos.y);
