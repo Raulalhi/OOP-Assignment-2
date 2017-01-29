@@ -7,8 +7,8 @@ class Player{
   
   Player()
   {
-    w = 50;
-    h = 50;
+    w = 70;
+    h = 70;
     
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
@@ -24,7 +24,7 @@ class Player{
     fd.shape = sd;
     
     fd.density = 0.5;
-    fd.friction = 0.5;
+    fd.friction = 0.3;
     fd.restitution = 0.3;
     
     body.createFixture(fd);
@@ -37,7 +37,7 @@ class Player{
   {
     Vec2 pos = box2d.getBodyPixelCoord(body);
     float a = body.getAngle();
-    body.setLinearVelocity(new Vec2(5,-1));
+    //body.setLinearVelocity(new Vec2(10,0));
     
     pushMatrix();
     translate(pos.x, pos.y);
