@@ -7,8 +7,8 @@ class Player{
   
   Player()
   {
-    w = 70;
-    h = 70;
+    w = 50;
+    h = 50;
     
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
@@ -38,6 +38,7 @@ class Player{
     Vec2 pos = box2d.getBodyPixelCoord(body);
     float a = body.getAngle();
     //body.setLinearVelocity(new Vec2(10,0));
+
     
     pushMatrix();
     translate(pos.x, pos.y);
@@ -48,4 +49,10 @@ class Player{
     rect(0,0,w,h);
     popMatrix();
   }
+  
+  void jump()
+  {
+    body.setLinearVelocity(new Vec2(0, 15));
+  }
+  
 }

@@ -7,19 +7,18 @@ class Obstacle
   
   float groundlevel = height - 50;
   
-  Obstacle(float x, float y)
+  Obstacle()
   {
-    
-    makeBody(new Vec2(x, groundlevel -50));
-    
+    float size = random(50, 100);
+    makeBody(new Vec2(950, groundlevel -150), size);
     
   }
   
-  void makeBody(Vec2 center)
+  void makeBody(Vec2 center, float size)
   {
     PolygonShape sd = new PolygonShape();
     
-    float size = random(50, 150);
+   
     Vec2[] vertices = new Vec2[3];
     vertices[0] = box2d.vectorPixelsToWorld(new Vec2(-size, +size));
     vertices[1] = box2d.vectorPixelsToWorld(new Vec2(+size, +size));
@@ -27,11 +26,15 @@ class Obstacle
     sd.set(vertices, vertices.length);
      
     BodyDef bd = new BodyDef();
-    bd.type = BodyType.STATIC;
+    bd.type = BodyType.DYNAMIC;
     bd.position.set(box2d.coordPixelsToWorld(center));
     body = box2d.createBody(bd);
-
+    
+    FixtureDef fd = new FixtureDef();
+    fd.shape = sd;
+    
     body.createFixture(sd,1);
+    body.setGravityScale(0);
   }
   
   void display()
@@ -39,7 +42,8 @@ class Obstacle
     Vec2 pos = box2d.getBodyPixelCoord(body);
     Fixture f = body.getFixtureList();
     PolygonShape ps = (PolygonShape) f.getShape();
-
+    
+    body.setLinearVelocity(new Vec2(-30,0));
 
     pushMatrix();
     translate(pos.x, pos.y);
@@ -54,12 +58,18 @@ class Obstacle
     endShape(CLOSE);
     popMatrix();
   }
-  
-  void update()
-  {
-    Vec2 pos = box2d.getBodyPixelCoord(body);
-    pos.x --;
-    
+  void killBody() {
+    box2d.destroyBody(body);
   }
   
+  boolean done() {
+    // Let's find the screen position of the particle
+    Vec2 pos = box2d.getBodyPixelCoord(body);
+    // Is it off the bottom of the screen?
+    if (pos.x + 100 < 0) {
+      killBody();
+      return true;
+    }
+    return false;
+  }
 }
