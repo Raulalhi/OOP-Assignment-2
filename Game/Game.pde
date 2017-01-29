@@ -53,26 +53,33 @@ void draw()
      }
    }
    
-   text(obstacles.size(), width/2, 200);
-  
-  Boundary b1 = new Boundary(width/2, groundlevel, width, 100);
-  Boundary b2 = new Boundary(width/2, 50, width, 100);
-  b1.display();
-  b2.display();
+     text(obstacles.size(), width/2, 200);
+     text(frameRate, width/2, 190);
+    
+    Boundary b1 = new Boundary(width/2, groundlevel, width, 100);
+    Boundary b2 = new Boundary(width/2, 50, width, 100);
+    b1.display();
+    b2.display();
 }
 
 
-float time = millis();
 void createObstacles()
 {
-  if (millis() > time + 2000)
+  if (frameCount % 60 == 0)
   {
-    Obstacle cs = new Obstacle();
-    obstacles.add(cs);
-    time = millis();
+    if(random(0, 1) > 0.5)
+    {
+      Obstacle cs = new Obstacle(950 , height -100, 1);
+      obstacles.add(cs);
+    }
+    else
+    {
+      Obstacle cs = new Obstacle(950 , 100, 2);
+      obstacles.add(cs);
+    }
   }
 }
-
+    
 void keyPressed()
 {
   for (Player p: players) {

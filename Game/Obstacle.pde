@@ -7,23 +7,37 @@ class Obstacle
   
   float groundlevel = height - 50;
   
-  Obstacle()
+  Obstacle(float x, float y, int type)
   {
-    float size = random(50, 100);
-    makeBody(new Vec2(950, groundlevel -150), size);
+    float size = random(50, 90);
+    makeBody(new Vec2(x, y), size, type);
+    fill(0);
+    stroke(0);
+    
     
   }
   
-  void makeBody(Vec2 center, float size)
+  void makeBody(Vec2 center, float size, float type)
   {
     PolygonShape sd = new PolygonShape();
     
-   
-    Vec2[] vertices = new Vec2[3];
-    vertices[0] = box2d.vectorPixelsToWorld(new Vec2(-size, +size));
-    vertices[1] = box2d.vectorPixelsToWorld(new Vec2(+size, +size));
-    vertices[2] = box2d.vectorPixelsToWorld(new Vec2(0, -size));
-    sd.set(vertices, vertices.length);
+    if (type == 1)
+    {
+      Vec2[] vertices = new Vec2[3];
+      vertices[0] = box2d.vectorPixelsToWorld(new Vec2(-size, +size));
+      vertices[1] = box2d.vectorPixelsToWorld(new Vec2(+size, +size));
+      vertices[2] = box2d.vectorPixelsToWorld(new Vec2(0, -size));
+      sd.set(vertices, vertices.length);
+    }
+    else
+    {
+      Vec2[] vertices = new Vec2[3];
+      vertices[0] = box2d.vectorPixelsToWorld(new Vec2(size, -size));
+      vertices[1] = box2d.vectorPixelsToWorld(new Vec2(-size, -size));
+      vertices[2] = box2d.vectorPixelsToWorld(new Vec2(0, +size));
+      sd.set(vertices, vertices.length);
+    }
+      
      
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
@@ -47,8 +61,8 @@ class Obstacle
 
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(0);
-    stroke(0);
+    
+    
     beginShape();
     for (int i = 0; i < ps.getVertexCount(); i++)
     {
