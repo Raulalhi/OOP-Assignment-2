@@ -11,8 +11,6 @@ class Obstacle
   {
     float size = random(50, 90);
     makeBody(new Vec2(x, y), size, type);
-    fill(0);
-    stroke(0);
     
     
   }
@@ -61,7 +59,8 @@ class Obstacle
 
     pushMatrix();
     translate(pos.x, pos.y);
-    
+    fill(0);
+    stroke(0);
     
     beginShape();
     for (int i = 0; i < ps.getVertexCount(); i++)
