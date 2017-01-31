@@ -10,35 +10,42 @@ import org.jbox2d.dynamics.contacts.*;
 
 
 Box2DProcessing box2d;
-ArrayList<Player> players;
 ArrayList<Obstacle> obstacles;
 
+float startTime, currTime;
+float spawnTime;
+
+Boundary b1;
+Boundary b2;
+Player p1;
 
 void setup()
 {
   size(1000,500);
   smooth();
  
-  
   box2d = new Box2DProcessing(this); 
   box2d.createWorld();
+  box2d.listenForCollisions();
   
-  players = new ArrayList<Player>();
   obstacles = new ArrayList<Obstacle>();
   
-  Player p = new Player();
-  players.add(p);
+  spawnTime = 1000;
+  startTime = millis();
+  
+  p1 = new Player();
+  b1 = new Boundary(width/2, height - 50, 400+width, 100);
+  b2 = new Boundary(width/2, 50, 400+width, 100);
 }
 
 void draw()
 {
   background(255);
   box2d.step();
+  box2d.setGravity(0, -20);
   
   gamemode2();
   
-  text(obstacles.size(), width/2, 200);
-  text(frameRate, width/2, 190);
 }
 
 void gamemode1()
@@ -48,19 +55,13 @@ void gamemode1()
 void gamemode2()
 {
   float groundlevel = height - 50;
-  box2d.setGravity(0, -20);
   
-  Boundary b1 = new Boundary(width/2, groundlevel, width, 100);
-  Boundary b2 = new Boundary(width/2, 50, width, 100);
   b1.display();
   b2.display();
   
-  createObstacles();
+  p1.display();
   
-  for (Player p: players)
-  {
-    p.display();
-  }
+  createObstacles();
    
    for (int i = obstacles.size()-1; i>= 0; i--)
    {
@@ -72,20 +73,28 @@ void gamemode2()
        obstacles.remove(i);
      }
    }
+   
+   fill(0);
+   text(obstacles.size(), width/2, 200);
+    text(frameRate, width/2, 190);
 }
 
 void createObstacles()
 {
-  if (frameCount % 60 == 0)
+  currTime = millis() - startTime;
+  
+  if (currTime >= spawnTime)
   {
     if(random(0, 1) > 0.5)
     {
-      Obstacle cs = new Obstacle(950 , height -100, 1);
+      startTime = millis();
+      Obstacle cs = new Obstacle(width +90, height -100, 1);
       obstacles.add(cs);
     }
     else
     {
-      Obstacle cs = new Obstacle(950 , 100, 2);
+      startTime = millis();
+      Obstacle cs = new Obstacle(width + 90, 100, 2);
       obstacles.add(cs);
     }
   }
@@ -93,7 +102,5 @@ void createObstacles()
     
 void keyPressed()
 {
-  for (Player p: players) {
-    p.jump();
-   }
+  p1.jump();
 }

@@ -1,18 +1,22 @@
 class Player{
   
   Body body;
+  float x,y;
   float w, h;
   float groundlevel = height - 50;
+  color col = (255);
   
   
   Player()
   {
+    x = 100;
+    y = groundlevel - 50;
     w = 50;
     h = 50;
     
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
-    bd.position.set(box2d.coordPixelsToWorld(100,groundlevel - 25));
+    bd.position.set(box2d.coordPixelsToWorld(x,y));
     body = box2d.createBody(bd);
     
     PolygonShape sd = new PolygonShape();
@@ -21,13 +25,8 @@ class Player{
     sd.setAsBox(box2dW, box2dH);
     
     FixtureDef fd = new FixtureDef();
-    fd.shape = sd;
-    
-    fd.density = 0.5;
-    fd.friction = 0.3;
-    fd.restitution = 0.3;
-    
-    body.createFixture(fd);
+    fd.shape = sd; 
+    body.createFixture(sd,1);
     
     //body.setLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
   }
@@ -42,10 +41,10 @@ class Player{
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(-a);
-    fill(175);
+    fill(col);
     stroke(0);
     rectMode(CENTER);
-    rect(0,0,w,h);
+    rect(0, 0,w,h);
     popMatrix();
   }
   
@@ -55,16 +54,9 @@ class Player{
     body.setAngularVelocity(5);
   }
   
-  void GameMode1()
+  void change()
   {
-  }
-  
-  void GameMode2()
-  {
-  }
-  
-  void GameMode3()
-  {
+    col = (0);
   }
   
 }

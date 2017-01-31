@@ -4,15 +4,13 @@ class Obstacle
   Body body;
   
   float cx, cy;
-  
+  color col = 255;
   float groundlevel = height - 50;
   
   Obstacle(float x, float y, int type)
   {
     float size = random(50, 80);
     makeBody(new Vec2(x, y), size, type);
-    
-    
   }
   
   void makeBody(Vec2 center, float size, float type)
@@ -59,7 +57,7 @@ class Obstacle
 
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(50,205,50);
+    fill(col);
     strokeWeight(5);
     stroke(34,139,34);
     
@@ -72,18 +70,25 @@ class Obstacle
     endShape(CLOSE);
     popMatrix();
   }
-  void killBody() {
+  
+  void killBody()
+  {
     box2d.destroyBody(body);
   }
   
-  boolean done() {
-    // Let's find the screen position of the particle
+  boolean done()
+  {
     Vec2 pos = box2d.getBodyPixelCoord(body);
-    // Is it off the bottom of the screen?
-    if (pos.x + 100 < 0) {
+    if (pos.x + 100 < 0)
+    {
       killBody();
       return true;
     }
     return false;
+  }
+  
+  void change()
+  {
+    col = 0;
   }
 }
