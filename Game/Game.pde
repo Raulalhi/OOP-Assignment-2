@@ -4,11 +4,9 @@ import org.jbox2d.common.*;
 import org.jbox2d.dynamics.joints.*;
 import org.jbox2d.collision.shapes.*;
 import org.jbox2d.collision.shapes.Shape;
-import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
 import org.jbox2d.dynamics.contacts.*;
-import org.jbox2d.callbacks.ContactImpulse;
-import org.jbox2d.callbacks.ContactListener;
+import org.jbox2d.dynamics.contacts.Contact;
 
 Box2DProcessing box2d;
 ArrayList<Obstacle> obstacles;
@@ -27,7 +25,7 @@ void setup()
  
   box2d = new Box2DProcessing(this); 
   box2d.createWorld();
-  box2d.world.setContactListener(new CustomListener());
+  box2d.listenForCollisions();
   
   obstacles = new ArrayList<Obstacle>();
   

@@ -10,7 +10,7 @@ class Player{
   Player()
   {
     x = 100;
-    y = groundlevel - 50;
+    y = groundlevel - 200;
     w = 50;
     h = 50;
     
@@ -33,7 +33,6 @@ class Player{
     fd.restitution = 0.3;
     
     player.createFixture(fd);
-    
     player.setUserData(this);
     
     //body.setLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
