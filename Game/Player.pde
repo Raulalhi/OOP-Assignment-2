@@ -1,6 +1,6 @@
 class Player{
   
-  Body body;
+  Body player;
   float x,y;
   float w, h;
   float groundlevel = height - 50;
@@ -14,10 +14,12 @@ class Player{
     w = 50;
     h = 50;
     
+
+    
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
     bd.position.set(box2d.coordPixelsToWorld(x,y));
-    body = box2d.createBody(bd);
+    player = box2d.createBody(bd);
     
     PolygonShape sd = new PolygonShape();
     float box2dW = box2d.scalarPixelsToWorld(w/2);
@@ -25,16 +27,22 @@ class Player{
     sd.setAsBox(box2dW, box2dH);
     
     FixtureDef fd = new FixtureDef();
-    fd.shape = sd; 
-    body.createFixture(sd,1);
+    fd.shape = sd;
+    fd.density = 1;
+    fd.friction = 0.01;
+    fd.restitution = 0.3;
+    
+    player.createFixture(fd);
+    
+    player.setUserData(this);
     
     //body.setLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
   }
   
   void display()
   {
-    Vec2 pos = box2d.getBodyPixelCoord(body);
-    float a = body.getAngle();
+    Vec2 pos = box2d.getBodyPixelCoord(player);
+    float a = player.getAngle();
     //body.setLinearVelocity(new Vec2(10,0));
 
     
@@ -44,14 +52,14 @@ class Player{
     fill(col);
     stroke(0);
     rectMode(CENTER);
-    rect(0, 0,w,h);
+    rect(0,0,w,h);
     popMatrix();
   }
   
   void jump()
   {
-    body.setLinearVelocity(new Vec2(0, 15));
-    body.setAngularVelocity(5);
+    player.setLinearVelocity(new Vec2(0, 15));
+    player.setAngularVelocity(5);
   }
   
   void change()

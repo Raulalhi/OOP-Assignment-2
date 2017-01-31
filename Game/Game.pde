@@ -7,7 +7,8 @@ import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.*;
 import org.jbox2d.dynamics.contacts.*;
-
+import org.jbox2d.callbacks.ContactImpulse;
+import org.jbox2d.callbacks.ContactListener;
 
 Box2DProcessing box2d;
 ArrayList<Obstacle> obstacles;
@@ -26,11 +27,11 @@ void setup()
  
   box2d = new Box2DProcessing(this); 
   box2d.createWorld();
-  box2d.listenForCollisions();
+  box2d.world.setContactListener(new CustomListener());
   
   obstacles = new ArrayList<Obstacle>();
   
-  spawnTime = 1000;
+  spawnTime = 1500;
   startTime = millis();
   
   p1 = new Player();
@@ -54,7 +55,6 @@ void gamemode1()
 
 void gamemode2()
 {
-  float groundlevel = height - 50;
   
   b1.display();
   b2.display();
@@ -76,7 +76,7 @@ void gamemode2()
    
    fill(0);
    text(obstacles.size(), width/2, 200);
-    text(frameRate, width/2, 190);
+   text(frameRate, width/2, 190);
 }
 
 void createObstacles()
@@ -85,17 +85,15 @@ void createObstacles()
   
   if (currTime >= spawnTime)
   {
-    if(random(0, 1) > 0.5)
+    if(random(1) > 0.5)
     {
       startTime = millis();
-      Obstacle cs = new Obstacle(width +90, height -100, 1);
-      obstacles.add(cs);
+      obstacles.add(new Obstacle(width +90, height -100, 1));
     }
     else
     {
       startTime = millis();
-      Obstacle cs = new Obstacle(width + 90, 100, 2);
-      obstacles.add(cs);
+      obstacles.add(new Obstacle(width + 90, 100, 2));
     }
   }
 }

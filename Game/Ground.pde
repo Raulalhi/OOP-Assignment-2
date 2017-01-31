@@ -30,13 +30,12 @@ class Boundary {
     bd.position.set(box2d.coordPixelsToWorld(x,y));
     b = box2d.createBody(bd);
     
-    // Attached the shape to the body using a Fixture
     b.createFixture(sd,1);
   }
 
   // Draw the boundary, if it were at an angle we'd have to do something fancier
   void display() {
-    fill(50,205,50);
+    fill(0);
     stroke(34,139,34);
     rectMode(CENTER);
     rect(x,y,w,h);

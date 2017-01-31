@@ -9,12 +9,18 @@ class Obstacle
   
   Obstacle(float x, float y, int type)
   {
-    float size = random(50, 80);
+    float size = random(50, 90);
     makeBody(new Vec2(x, y), size, type);
+    body.setUserData(this);
   }
   
   void makeBody(Vec2 center, float size, float type)
   {
+    BodyDef bd = new BodyDef();
+    bd.type = BodyType.DYNAMIC;
+    bd.position.set(box2d.coordPixelsToWorld(center));
+    body = box2d.createBody(bd);
+    
     PolygonShape sd = new PolygonShape();
     
     if (type == 1)
@@ -33,12 +39,6 @@ class Obstacle
       vertices[2] = box2d.vectorPixelsToWorld(new Vec2(0, +size));
       sd.set(vertices, vertices.length);
     }
-      
-     
-    BodyDef bd = new BodyDef();
-    bd.type = BodyType.DYNAMIC;
-    bd.position.set(box2d.coordPixelsToWorld(center));
-    body = box2d.createBody(bd);
     
     FixtureDef fd = new FixtureDef();
     fd.shape = sd;
@@ -53,12 +53,11 @@ class Obstacle
     Fixture f = body.getFixtureList();
     PolygonShape ps = (PolygonShape) f.getShape();
     
-    body.setLinearVelocity(new Vec2(-30,0));
+    body.setLinearVelocity(new Vec2(-20,0));
 
     pushMatrix();
     translate(pos.x, pos.y);
-    fill(col);
-    strokeWeight(5);
+    fill(0);
     stroke(34,139,34);
     
     beginShape();
