@@ -1,4 +1,4 @@
-
+ 
 import shiffman.box2d.*;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.joints.*;
@@ -12,6 +12,7 @@ import org.jbox2d.dynamics.contacts.*;
 Box2DProcessing box2d;
 ArrayList<Player> players;
 ArrayList<Obstacle> obstacles;
+
 
 void setup()
 {
@@ -33,14 +34,33 @@ void draw()
 {
   background(255);
   box2d.step();
+  
+  gamemode2();
+  
+  text(obstacles.size(), width/2, 200);
+  text(frameRate, width/2, 190);
+}
+
+void gamemode1()
+{
+}
+
+void gamemode2()
+{
   float groundlevel = height - 50;
   box2d.setGravity(0, -20);
   
+  Boundary b1 = new Boundary(width/2, groundlevel, width, 100);
+  Boundary b2 = new Boundary(width/2, 50, width, 100);
+  b1.display();
+  b2.display();
+  
   createObstacles();
   
-   for (Player p: players) {
+  for (Player p: players)
+  {
     p.display();
-   }
+  }
    
    for (int i = obstacles.size()-1; i>= 0; i--)
    {
@@ -52,16 +72,7 @@ void draw()
        obstacles.remove(i);
      }
    }
-   
-     text(obstacles.size(), width/2, 200);
-     text(frameRate, width/2, 190);
-    
-    Boundary b1 = new Boundary(width/2, groundlevel, width, 100);
-    Boundary b2 = new Boundary(width/2, 50, width, 100);
-    b1.display();
-    b2.display();
 }
-
 
 void createObstacles()
 {

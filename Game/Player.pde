@@ -30,7 +30,6 @@ class Player{
     body.createFixture(fd);
     
     //body.setLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
-    body.setAngularVelocity(5);
   }
   
   void display()
@@ -53,6 +52,19 @@ class Player{
   void jump()
   {
     body.setLinearVelocity(new Vec2(0, 15));
+    body.setAngularVelocity(5);
+  }
+  
+  void GameMode1()
+  {
+  }
+  
+  void GameMode2()
+  {
+  }
+  
+  void GameMode3()
+  {
   }
   
 }
