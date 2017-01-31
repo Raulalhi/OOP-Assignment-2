@@ -5,7 +5,6 @@ class Obstacle
   
   float cx, cy;
   color col = 255;
-  float groundlevel = height - 50;
   
   Obstacle(float x, float y, int type)
   {
@@ -58,7 +57,7 @@ class Obstacle
     pushMatrix();
     translate(pos.x, pos.y);
     fill(0);
-    stroke(34,139,34);
+    stroke(0);
     
     beginShape();
     for (int i = 0; i < ps.getVertexCount(); i++)
