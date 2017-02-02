@@ -65,6 +65,12 @@ class Player{
     player.setAngularVelocity(5);
   }
   
+  void down()
+  {
+    player.setLinearVelocity(new Vec2(0, -20));
+    player.setAngularVelocity(-5);
+  }
+  
   void change()
   {
     col = (0);

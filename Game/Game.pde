@@ -13,6 +13,9 @@ ArrayList<Obstacle> obstacles;
 float startTime, currTime;
 float spawnTime;
 
+PImage bg;
+PImage texture;
+
 Boundary b1;
 Boundary b2;
 Player p1;
@@ -28,9 +31,13 @@ void setup()
   
   obstacles = new ArrayList<Obstacle>();
   
-  spawnTime = 1000;
+  spawnTime = 1500;
   startTime = millis();
   
+  bg = loadImage("wallpaper3.png");
+  texture = loadImage("texture.png");
+  bg.width = 1000;
+  bg.height = 500;
   setupgame();
 }
 
@@ -47,7 +54,7 @@ void setupgame()
 
 void draw()
 {
-  background(255);
+  background(bg);
   box2d.step();
   box2d.setGravity(0, -30);
   
@@ -133,5 +140,12 @@ void createObstacles()
     
 void keyPressed()
 {
-  p1.jump();
+  if(key == 'w')
+  {
+    p1.jump();
+  }
+  if(key == 's')
+  {
+    p1.down();
+  }
 }
