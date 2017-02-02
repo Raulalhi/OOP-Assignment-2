@@ -14,7 +14,7 @@ float startTime, currTime;
 float spawnTime;
 
 PImage bg;
-PImage texture;
+PFont font;
 
 Boundary b1;
 Boundary b2;
@@ -31,11 +31,10 @@ void setup()
   
   obstacles = new ArrayList<Obstacle>();
   
-  spawnTime = 1500;
+  spawnTime = 1000;
   startTime = millis();
   
   bg = loadImage("wallpaper3.png");
-  texture = loadImage("texture.png");
   bg.width = 1000;
   bg.height = 500;
   setupgame();
