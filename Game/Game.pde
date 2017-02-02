@@ -1,5 +1,3 @@
-
- 
 import shiffman.box2d.*;
 import org.jbox2d.common.*;
 import org.jbox2d.dynamics.joints.*;
@@ -30,8 +28,17 @@ void setup()
   
   obstacles = new ArrayList<Obstacle>();
   
-  spawnTime = 1500;
+  spawnTime = 1000;
   startTime = millis();
+  
+  setupgame();
+}
+
+void setupgame()
+{
+  p1 = null;
+  b1 = null;
+  b2 = null;
   
   p1 = new Player();
   b1 = new Boundary(width/2, height - 50, 400+width, 100);
@@ -42,40 +49,67 @@ void draw()
 {
   background(255);
   box2d.step();
-  box2d.setGravity(0, -20);
+  box2d.setGravity(0, -30);
   
-  gamemode2();
+  gamemode();
   
 }
 
-void gamemode1()
+int  mode = 2;
+void gamemode()
 {
-}
-
-void gamemode2()
-{
+  switch (mode)
+  {
+    case 1:
+      break;
+    case 2:
+      b1.display();
+      b2.display();
   
-  b1.display();
-  b2.display();
+      p1.display();
   
-  p1.display();
-  
-  createObstacles();
+      createObstacles();
    
-   for (int i = obstacles.size()-1; i>= 0; i--)
-   {
-     Obstacle o = obstacles.get(i);
-     o.display();
+      for (int i = obstacles.size()-1; i>= 0; i--)
+      {
+        Obstacle o = obstacles.get(i);
+        o.display();
      
-     if(o.done())
-     {
-       obstacles.remove(i);
-     }
-   }
+        if(o.done())
+        {
+          obstacles.remove(i);
+        }
+      }
    
-   fill(0);
-   text(obstacles.size(), width/2, 200);
-   text(frameRate, width/2, 190);
+      fill(0);
+      text(obstacles.size(), width/2, 200);
+      text(frameRate, width/2, 190);
+      break;
+      
+    case 3:
+     background(0);
+     
+     for (int i = obstacles.size()-1; i>= 0; i--)
+      {
+        Obstacle o = obstacles.get(i);
+        o.display();
+        obstacles.remove(i);
+        o.killBody();
+      }
+      if(keyPressed)
+      {
+        if(key == 'y')
+        {
+          p1.killBody();
+          setupgame();
+          mode = 2;
+        }
+        else if (key =='n')
+        {
+        }
+      }
+      break;
+  }
 }
 
 void createObstacles()

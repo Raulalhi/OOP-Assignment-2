@@ -12,9 +12,14 @@ void beginContact(Contact cp)
   Object o2 = b2.getUserData();
   
   
-  if (o1.getClass() == Player.class) {
+  if (o1.getClass() == Player.class && o2.getClass() == Obstacle.class)
+  {
+    
+    mode = 3;
   } 
-  else if (o2.getClass() == Player.class) {
+  else if (o2.getClass() == Player.class && o1.getClass() == Obstacle.class)
+  {
+    mode = 3;
   }
 }
 

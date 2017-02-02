@@ -61,7 +61,7 @@ class Player{
   
   void jump()
   {
-    player.setLinearVelocity(new Vec2(0, 15));
+    player.setLinearVelocity(new Vec2(0, 20));
     player.setAngularVelocity(5);
   }
   

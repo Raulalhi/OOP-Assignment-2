@@ -41,9 +41,14 @@ class Obstacle
     
     FixtureDef fd = new FixtureDef();
     fd.shape = sd;
+    fd.density = 1;
+    fd.friction = 0;
+    fd.restitution = 0;
     
-    body.createFixture(sd,1);
+    body.createFixture(fd);
     body.setGravityScale(0);
+    
+    body.setLinearVelocity(new Vec2(-40,0));
   }
   
   void display()
@@ -52,7 +57,6 @@ class Obstacle
     Fixture f = body.getFixtureList();
     PolygonShape ps = (PolygonShape) f.getShape();
     
-    body.setLinearVelocity(new Vec2(-20,0));
 
     pushMatrix();
     translate(pos.x, pos.y);
