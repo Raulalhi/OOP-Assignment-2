@@ -48,13 +48,14 @@ class Player{
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(-a);
-    fill(col);
     stroke(0);
     rectMode(CENTER);
+     noFill();
     rect(0,0,w,h);
     
-    noFill();
+    strokeWeight(5);
     rect(0,0,w/1.5,h/1.5);
+    rect(0,0,w/3,h/3);
     popMatrix();
   }
   void killBody()
@@ -71,7 +72,7 @@ class Player{
   void down()
   {
     player.setLinearVelocity(new Vec2(0, -20));
-    player.setAngularVelocity(-5);
+    player.setAngularVelocity(5);
   }
   
   void change()

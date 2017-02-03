@@ -6,8 +6,11 @@ import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.dynamics.*;
 import org.jbox2d.dynamics.contacts.*;
 import org.jbox2d.dynamics.contacts.Contact;
+import ddf.minim.*;
 
 Box2DProcessing box2d;
+Minim minim;
+
 ArrayList<Obstacle> obstacles;
 
 float startTime, currTime;
@@ -16,9 +19,14 @@ float spawnTime;
 PImage bg;
 PFont font;
 
+int score;
+
 Boundary b1;
 Boundary b2;
 Player p1;
+
+Speed s1;
+Darker d1;
 
 void setup()
 {
@@ -28,6 +36,8 @@ void setup()
   box2d = new Box2DProcessing(this); 
   box2d.createWorld();
   box2d.listenForCollisions();
+  
+  minim = new Minim(this);
   
   obstacles = new ArrayList<Obstacle>();
   
@@ -40,6 +50,9 @@ void setup()
   
   bg.width = 1000;
   bg.height = 500;
+  
+  s1 = new Speed();
+  d1 = new Darker();
   setupgame();
 }
 
@@ -72,55 +85,69 @@ void gamemode()
     case 1:
       break;
     case 2:
-      b1.display();
-      b2.display();
-  
-      p1.display();
-  
-      createObstacles();
-   
-      for (int i = obstacles.size()-1; i>= 0; i--)
-      {
-        Obstacle o = obstacles.get(i);
-        o.display();
-     
-        if(o.done())
-        {
-          obstacles.remove(i);
-        }
-      }
-   
-      fill(0);
-      text(obstacles.size(), width/2, 200);
-      text(frameCount / 2, 100, 190);
+      
+      gamemode2();
       break;
       
     case 3:
-     background(0);
-     
-     for (int i = obstacles.size()-1; i>= 0; i--)
-      {
-        Obstacle o = obstacles.get(i);
-        o.display();
-        obstacles.remove(i);
-        o.killBody();
-      }
-      if(keyPressed)
-      {
-        if(key == 'y')
-        {
-          p1.killBody();
-          setupgame();
-          mode = 2;
-        }
-        else if (key =='n')
-        {
-        }
-      }
+      gamemode3();
       break;
   }
 }
 
+void gamemode2()
+{
+  b1.display();
+  b2.display();
+    
+  p1.display();
+  
+  createObstacles();
+  
+  score = frameCount / 2;
+   
+  for (int i = obstacles.size()-1; i>= 0; i--)
+  {
+    Obstacle o = obstacles.get(i);
+    o.display();
+   
+    if(o.done())
+    {
+    obstacles.remove(i);
+     }
+  }
+     
+    fill(0);
+    fill(255);
+    textSize(16);
+    text("SCORE:" + score, 20, 50);
+}
+
+void gamemode3()
+{
+  background(0);
+  score = 0;
+   
+  for (int i = obstacles.size()-1; i>= 0; i--)
+  {
+    Obstacle o = obstacles.get(i);
+    o.display();
+    obstacles.remove(i);
+    o.killBody();
+  }
+  if(keyPressed)
+  {
+    if(key == 'y')
+    {
+      p1.killBody();
+      setupgame();
+      mode = 2;
+    }
+    else if (key =='n')
+    {
+    }
+  }
+}
 void createObstacles()
 {
   currTime = millis() - startTime;
@@ -131,6 +158,7 @@ void createObstacles()
     {
       startTime = millis();
       obstacles.add(new Obstacle(width +90, height -100, 1));
+      s1.modify();
     }
     else
     {

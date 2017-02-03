@@ -89,8 +89,9 @@ class Obstacle
     return false;
   }
   
-  void change()
+  void faster()
   {
-    col = 0;
+     body.setLinearVelocity(new Vec2(-60,0));
   }
+    
 }
