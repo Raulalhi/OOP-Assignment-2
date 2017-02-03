@@ -52,6 +52,9 @@ class Player{
     stroke(0);
     rectMode(CENTER);
     rect(0,0,w,h);
+    
+    noFill();
+    rect(0,0,w/1.5,h/1.5);
     popMatrix();
   }
   void killBody()

@@ -61,6 +61,7 @@ class Obstacle
     pushMatrix();
     translate(pos.x, pos.y);
     noStroke();
+    fill(0);
 
     beginShape();
     for (int i = 0; i < ps.getVertexCount(); i++)

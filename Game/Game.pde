@@ -35,6 +35,9 @@ void setup()
   startTime = millis();
   
   bg = loadImage("wallpaper3.png");
+  font = createFont("Pixel LCD-7.ttf", 32);
+  textFont(font);
+  
   bg.width = 1000;
   bg.height = 500;
   setupgame();
@@ -89,7 +92,7 @@ void gamemode()
    
       fill(0);
       text(obstacles.size(), width/2, 200);
-      text(frameRate, width/2, 190);
+      text(frameCount / 2, 100, 190);
       break;
       
     case 3:

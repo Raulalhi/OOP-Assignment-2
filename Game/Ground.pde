@@ -37,7 +37,6 @@ class Boundary {
   void display() {
     //fill(0);
     noStroke();
-    texture(texture);
     rectMode(CENTER);
     rect(x,y,w,h);
   }
