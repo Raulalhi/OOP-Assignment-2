@@ -13,8 +13,8 @@ Minim minim;
 
 ArrayList<Obstacle> obstacles;
 
-float startTime, currTime;
-float spawnTime;
+float startTime, currTime, startTime2, currTime2;
+float spawnTime, spawnTime2;
 
 PImage bg;
 PFont font;
@@ -42,7 +42,9 @@ void setup()
   obstacles = new ArrayList<Obstacle>();
   
   spawnTime = 1000;
+  spawnTime2 = 5000;
   startTime = millis();
+  startTime2 = millis();
   
   bg = loadImage("wallpaper3.png");
   font = createFont("Pixel LCD-7.ttf", 32);
@@ -69,7 +71,7 @@ void setupgame()
 
 void draw()
 {
-  background(bg);
+  background(255);
   box2d.step();
   box2d.setGravity(0, -30);
   
@@ -103,8 +105,9 @@ void gamemode2()
   p1.display();
   
   createObstacles();
+  applyModifiers();
   
-  score = frameCount / 2;
+  score += 1;
    
   for (int i = obstacles.size()-1; i>= 0; i--)
   {
@@ -156,15 +159,35 @@ void createObstacles()
   {
     if(random(1) > 0.5)
     {
-      startTime = millis();
+      startTime = millis(); 
       obstacles.add(new Obstacle(width +90, height -100, 1));
-      s1.modify();
     }
     else
     {
       startTime = millis();
       obstacles.add(new Obstacle(width + 90, 100, 2));
     }
+  }
+}
+
+void applyModifiers()
+{
+  currTime2 = millis() - startTime2;
+  
+  if (currTime2 >= spawnTime2)
+  {
+    int mc = (int) random(1,3);
+    switch (mc)
+    {
+      case 1:
+      s1.modify();
+      break;
+      
+      case 2:
+      d1.modify();
+      break;
+    }
+    startTime2 = millis(); 
   }
 }
     
