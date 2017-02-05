@@ -20,11 +20,13 @@ void gamemode()
 
 color col = 255;
 
+
 void gamemode1()
 {
   float cx = width/2;
   float cy = height/2;
   background(0);
+
   
   if(frameCount % 30 == 0)
   {
@@ -34,10 +36,44 @@ void gamemode1()
   fill(col);
   text("Game Name", cx, cy -150);
   
-  t1.display();
-  t2.display();
-  t3.display();
+  
+  textSize(32);
+  fill (255);
+  
+  if( dist(mouseX, mouseY, cx, cy) < 32) 
+  {
+    textSize(40);
+    fill (col);
+    if(mousePressed)
+    {
+      mode = 2;
+    }
+  }
+  text("Play", cx, cy);
+  
+  textSize(32);
+  fill (255);
+  if( dist(mouseX, mouseY, cx, cy + 50) < 32)
+  {
+    textSize(40);
+    fill (col);
+
+  }
+  text("LeaderBoards", cx, cy + 50);
+  
+  textSize(32);
+  fill (255);
+  if( dist(mouseX, mouseY, cx, cy + 100) < 32)
+  {
+    textSize(40);
+    fill (col);
+  }
+  text("Exit", cx, cy + 100);
+    
+  
 }
+
+
 void gamemode2()
 {
   b1.display();

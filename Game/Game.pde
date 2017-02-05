@@ -11,6 +11,7 @@ import ddf.minim.*;
 Box2DProcessing box2d;
 Minim minim;
 
+
 ArrayList<Obstacle> obstacles;
 
 float startTime, currTime, startTime2, currTime2;
@@ -25,9 +26,6 @@ Boundary b1;
 Boundary b2;
 Player p1;
 
-Text t1;
-Text t2;
-Text t3;
 
 Speed s1;
 Darker d1;
@@ -47,10 +45,6 @@ void setup()
   minim = new Minim(this);
 
   obstacles = new ArrayList<Obstacle>();
-  
-  t1 = new Text("Play", cx, cy);
-  t2 = new Text("LeaderBoards", cx, cy + 50);
-  t3 = new Text("Exit", cx, cy + 100);
 
   spawnTime = 1000;
   spawnTime2 = 7000;
