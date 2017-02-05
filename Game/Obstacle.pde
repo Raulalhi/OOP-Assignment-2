@@ -61,13 +61,14 @@ class Obstacle
     pushMatrix();
     translate(pos.x, pos.y);
     noStroke();
-    fill(0);
 
     beginShape();
+    texture(tex);
+    
     for (int i = 0; i < ps.getVertexCount(); i++)
     {
       Vec2 v = box2d.vectorWorldToPixels(ps.getVertex(i));
-      vertex(v.x, v.y);
+      vertex(v.x, v.y, textureCoordX[i], textureCoordX[i]);
     }
     endShape(CLOSE);
     popMatrix();

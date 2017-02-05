@@ -34,8 +34,6 @@ class Player{
     
     player.createFixture(fd);
     player.setUserData(this);
-    
-    //body.setLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
   }
   
   void display()
@@ -43,18 +41,19 @@ class Player{
     Vec2 pos = box2d.getBodyPixelCoord(player);
     float a = player.getAngle();
     //body.setLinearVelocity(new Vec2(10,0));
-
+    
+    rectMode(CENTER);
+    noFill();
     
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(-a);
-    stroke(0);
-    rectMode(CENTER);
-     noFill();
+    stroke(255);
+    
     rect(0,0,w,h);
     
-    strokeWeight(5);
     rect(0,0,w/1.5,h/1.5);
+    
     rect(0,0,w/3,h/3);
     popMatrix();
   }

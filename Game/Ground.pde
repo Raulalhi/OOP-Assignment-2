@@ -1,12 +1,10 @@
 class Boundary {
 
-  // A boundary is a simple rectangle with x,y,width,and height
   float x;
   float y;
   float w;
   float h;
   
-  // But we also have to make a body for box2d to know about it
   Body b;
 
   Boundary(float x_,float y_, float w_, float h_) {
@@ -33,10 +31,9 @@ class Boundary {
     box2d.destroyBody(b);
   }
 
-  // Draw the boundary, if it were at an angle we'd have to do something fancier
   void display() {
-    fill(0);
     noStroke();
+    fill(#2F4F4F);
     rectMode(CENTER);
     rect(x,y,w,h);
   }

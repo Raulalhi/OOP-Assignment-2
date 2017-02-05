@@ -26,6 +26,9 @@ void gamemode1()
   float cx = width/2;
   float cy = height/2;
   background(0);
+  
+  imageMode(CENTER);
+  image(bg, width/2, height/2);
 
   
   if(frameCount % 30 == 0)
@@ -53,22 +56,22 @@ void gamemode1()
   
   textSize(32);
   fill (255);
-  if( dist(mouseX, mouseY, cx, cy + 50) < 32)
+  if( dist(mouseX, mouseY, cx, cy + 60) < 32)
   {
     textSize(40);
     fill (col);
 
   }
-  text("LeaderBoards", cx, cy + 50);
+  text("LeaderBoards", cx, cy + 60);
   
   textSize(32);
   fill (255);
-  if( dist(mouseX, mouseY, cx, cy + 100) < 32)
+  if( dist(mouseX, mouseY, cx, cy + 120) < 32)
   {
     textSize(40);
     fill (col);
   }
-  text("Exit", cx, cy + 100);
+  text("Exit", cx, cy + 120);
     
   
 }
@@ -76,6 +79,7 @@ void gamemode1()
 
 void gamemode2()
 {
+  image(bg2, width/2, height/2);
   b1.display();
   b2.display();
 
@@ -108,7 +112,7 @@ void gamemode3()
   float cx = width/2;
   float cy = height/2;
   
-  background(0);
+  image(bg2, width/2, height/2);
   score = 0;
   
   noFill();

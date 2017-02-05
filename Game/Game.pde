@@ -18,6 +18,11 @@ float startTime, currTime, startTime2, currTime2;
 float spawnTime, spawnTime2;
 
 PImage bg;
+PImage bg2;
+PImage tex;
+
+float textureCoordX[] = {500, 0, 500};
+float textureCoordY[] = {0, 300, 300};
 PFont font;
 
 int score;
@@ -32,7 +37,7 @@ Darker d1;
 
 void setup()
 {
-  size(1000,500);
+  size(1000,500, P2D);
   smooth();
   
   float cx = width/2;
@@ -51,9 +56,10 @@ void setup()
   startTime = millis();
   startTime2 = millis();
 
-  bg = loadImage("wallpaper3.png");
+  bg = loadImage("wallpaper.png");
+  bg2 = loadImage("wallpaper3.png");
+  tex = loadImage("texture2.jpg");
   font = createFont("Pixel LCD-7.ttf", 32);
-  
   textAlign(CENTER);
   textFont(font);
   
@@ -76,6 +82,7 @@ void setupgame()
 void draw()
 {
   background(255);
+  
   box2d.step();
   box2d.setGravity(0, -30);
 
