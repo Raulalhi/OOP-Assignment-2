@@ -18,25 +18,25 @@ void gamemode()
   }
 }
 
+color col = 255;
+
 void gamemode1()
 {
   float cx = width/2;
   float cy = height/2;
-  color col;
   background(0);
   
-  if(frameCount % 60 == 0)
+  if(frameCount % 30 == 0)
   {
-    col = (random(0, 255), random(0, 255), random(0, 255));
+    col = color(random(255), random(255), random(255));
   }
   textSize(64);
+  fill(col);
   text("Game Name", cx, cy -150);
   
-  fill(255);
-  textSize(32);
-  text("Play", cx, cy);
-  text("LeaderBoards", cx, cy +50);
-  text("Exit", cx, cy +100);
+  t1.display();
+  t2.display();
+  t3.display();
 }
 void gamemode2()
 {
