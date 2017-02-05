@@ -16,19 +16,11 @@ class Speed extends Modifier
   {
     audio.play();
     audio.rewind();
-    float x = 5;
-    if (timer > x)
+        
+    for (Obstacle o : obstacles)
     {
+      o.faster();
     }
-    else
-    {     
-      for (Obstacle o : obstacles)
-      {
-        o.faster();
-      }
-      timer += timeDelta;
-      println(timer);
-    }
-    
+    timer += timeDelta;
   }
 }

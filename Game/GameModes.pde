@@ -25,7 +25,6 @@ void gamemode1()
 {
   float cx = width/2;
   float cy = height/2;
-  background(0);
   
   imageMode(CENTER);
   image(bg, width/2, height/2);
@@ -86,7 +85,7 @@ void gamemode2()
   p1.display();
 
   createObstacles();
-  //applyModifiers();
+  applyModifiers();
 
   score += 1;
 
@@ -101,10 +100,9 @@ void gamemode2()
      }
   }
 
-    fill(0);
     fill(255);
-    textSize(16);
-    text("SCORE:" + score, 20, 50);
+    textSize(18);
+    text("SCORE:" + score, 70, 50);
 }
 
 void gamemode3()
@@ -112,7 +110,7 @@ void gamemode3()
   float cx = width/2;
   float cy = height/2;
   
-  image(bg2, width/2, height/2);
+  image(bg, width/2, height/2);
   score = 0;
   
   noFill();
@@ -141,7 +139,9 @@ void gamemode3()
     }
     else if (key =='n')
     {
-      exit();
+      p1.killBody();
+      setupgame();
+      mode = 1;
     }
   }
 }

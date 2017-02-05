@@ -52,7 +52,7 @@ void setup()
   obstacles = new ArrayList<Obstacle>();
 
   spawnTime = 1000;
-  spawnTime2 = 7000;
+  spawnTime2 = 10000;
   startTime = millis();
   startTime2 = millis();
 
@@ -99,46 +99,37 @@ void createObstacles()
     if(random(1) > 0.5)
     {
       startTime = millis();
-      obstacles.add(new Obstacle(width +90, height -100, 1));
+      obstacles.add(new Obstacle(width +100, height -100, 1));
     }
     else
     {
       startTime = millis();
-      obstacles.add(new Obstacle(width + 90, 100, 2));
+      obstacles.add(new Obstacle(width + 100, 100, 2));
     }
   }
 }
 
-//void applyModifiers()
-//{
-//  currTime2 = millis() - startTime2;
+void applyModifiers()
+{
+  currTime2 = millis() - startTime2;
 
-//  if (currTime2 >= spawnTime)
-//  {
-//    int mc = (int) random(1,3);
-//    switch (mc)
-//    {
-//      case 1:
-//      //d1.sound();
-//      float x = 2;
-  
-//      if(timer > x)
-//      {
-//        d1.modify();
-//        println("after x seconds");
-//      }
-//      else
-//      {
-//        timer += timeDelta;
-//      }
-//      break;
+  if (currTime2 >= spawnTime2)
+  {
+    int mc = (int) random(3);
+    switch (mc)
+    {
+      case 1:
+      s1.modify();
+      startTime2 = millis();
+      break;
 
-//      case 2:
-//      d1.modify();
-//      break;
-//    }
-//  }
-//}
+      case 2:
+      d1.modify();
+      startTime2 = millis();
+      break;
+    }
+  }
+}
 
 void keyPressed()
 {

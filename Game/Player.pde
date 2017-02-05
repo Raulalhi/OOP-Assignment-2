@@ -44,7 +44,7 @@ class Player{
     
     rectMode(CENTER);
     noFill();
-    
+    strokeWeight(1);
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(-a);

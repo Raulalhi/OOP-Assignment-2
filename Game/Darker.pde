@@ -15,9 +15,19 @@ class Darker extends Modifier
     audio.rewind();
   }
   void modify()
-  {    
+  {
+    audio.play();
+    audio.rewind();
     noStroke();
     fill(0,0,0);
-    rect(width/2,height/2,width, height);
+    
+    float x = 5;
+    
+    while(timer > x)
+    {
+      rect(width/2,height/2,width, height);
+      timer += timeDelta;
+    }
+    timer = 0;
   }
 }
