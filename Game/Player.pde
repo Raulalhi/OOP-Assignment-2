@@ -75,9 +75,6 @@ class Player{
     player.setAngularVelocity(5);
   }
   
-  void change()
-  {
-    col = (0);
-  }
+    
   
 }

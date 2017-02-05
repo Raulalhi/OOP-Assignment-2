@@ -5,6 +5,6 @@ abstract class Modifier
   Modifier()
   {
   }
-  
+  abstract void sound();
   abstract void modify();
 }

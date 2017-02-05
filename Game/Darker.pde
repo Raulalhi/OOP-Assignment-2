@@ -1,3 +1,6 @@
+float timeDelta = 1.0f / 60.0f;
+float timer = 0;
+
 class Darker extends Modifier
 {
   
@@ -6,13 +9,15 @@ class Darker extends Modifier
     audio = minim.loadFile("darker.wav");
   }
   
-  void modify()
+  void sound()
   {
     audio.play();
     audio.rewind();
-    
+  }
+  void modify()
+  {    
     noStroke();
-    fill(0,0,0, 20);
+    fill(0,0,0);
     rect(width/2,height/2,width, height);
   }
 }
