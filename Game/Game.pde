@@ -28,10 +28,6 @@ Boundary b1;
 Boundary b2;
 Player p1;
 
-
-Speed s1;
-Darker d1;
-
 void setup()
 {
   size(1000,500);
@@ -46,7 +42,7 @@ void setup()
   obstacles = new ArrayList<Obstacle>();
 
   spawnTime = 1000;
-  spawnTime2 = 10000;
+  spawnTime2 = 5000;
   startTime = millis();
   startTime2 = millis();
 
@@ -56,9 +52,9 @@ void setup()
   textAlign(CENTER);
   textFont(font);
   
-  s1 = new Speed();
-  d1 = new Darker();
   setupgame();
+  
+  leaderboards();
 }
 
 void setupgame()
@@ -102,26 +98,54 @@ void createObstacles()
   }
 }
 
+float timeDelta = 1.0f / 60.0f;
+float timer = 0;
+float spawn = 10;
+boolean timeset;
+ArrayList<Modifier> modifiers = new ArrayList<Modifier>();
+
 void applyModifiers()
 {
-  currTime2 = millis() - startTime2;
 
-  if (currTime2 >= spawnTime2)
+  if (timer > spawn)
   {
-    int mc = (int) random(3);
-    switch (mc)
+    int mod = (int)random(1,3);
+    Modifier m;
+    
+    if( mod == 1)
     {
-      case 1:
-      s1.modify();
-      startTime2 = millis();
-      break;
-
-      case 2:
-      s1.modify();
-      startTime2 = millis();
-      break;
+      m = new Speed();
     }
+    else
+    {
+      m = new Darker();
+    }
+    
+    modifiers.add(m);
+    timer = 0;
   }
+  
+  for (int i = modifiers.size()-1; i>= 0; i--)
+  {
+    Modifier p = modifiers.get(i);
+    
+    if(p instanceof Speed)
+    {
+      Speed s = (Speed) p;
+      s.modify();
+      s.sound();
+    }
+    else if(p instanceof Darker)
+    {
+      Darker d = (Darker) p;
+      d.modify();
+      d.sound();
+    }
+    
+  }
+  
+  timer += timeDelta;
+  
 }
 
 void keyPressed()

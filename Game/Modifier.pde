@@ -1,6 +1,7 @@
 abstract class Modifier
 {
   AudioPlayer audio;
+  int timetolive = 5;
   
   Modifier()
   {

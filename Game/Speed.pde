@@ -12,15 +12,25 @@ class Speed extends Modifier
     audio.play();
     audio.rewind();
   }
+  
+  
   void modify()
   {
-    audio.play();
-    audio.rewind();
-        
+    if(timer > timetolive)
+    {
+      die();
+    }
+    
+    
     for (Obstacle o : obstacles)
     {
       o.faster();
     }
     timer += timeDelta;
+  }
+  
+  void die()
+  {
+    modifiers.remove(this);
   }
 }

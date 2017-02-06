@@ -1,5 +1,3 @@
-float timeDelta = 1.0f / 60.0f;
-float timer = 0;
 
 class Darker extends Modifier
 {
@@ -12,22 +10,25 @@ class Darker extends Modifier
   void sound()
   {
     audio.play();
-    audio.rewind();
+    //audio.rewind();
   }
   void modify()
   {
-    audio.play();
-    audio.rewind();
+    
+    if(timer > timetolive)
+    {
+      die();
+    }
+    
     noStroke();
     fill(0,0,0);
+    rect(width/2,height/2,width, height);
     
-    float x = 5;
-    
-    while(timer > x)
-    {
-      rect(width/2,height/2,width, height);
-      timer += timeDelta;
-    }
-    timer = 0;
+    timer += timeDelta;
+  }
+  
+  void die()
+  {
+    modifiers.remove(this);
   }
 }
