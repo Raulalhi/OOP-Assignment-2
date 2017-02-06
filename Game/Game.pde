@@ -34,11 +34,8 @@ Darker d1;
 
 void setup()
 {
-  size(1000,500, P2D);
+  size(1000,500);
   smooth();
-  
-  float cx = width/2;
-  float cy = height/2;
 
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
