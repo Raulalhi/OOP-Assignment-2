@@ -17,6 +17,7 @@ void gamemode()
       break;
       
       case 4:
+      leaderboards();
       displayleadeboard();
   }
 }
@@ -126,7 +127,6 @@ void gamemode3()
   float cy = height/2;
   
   image(bg, width/2, height/2);
-  score = 0;
   
   noFill();
   stroke(255);
@@ -150,7 +150,17 @@ void gamemode3()
       }
       if(key==ENTER && name_index>0) 
       {
-        name="";
+        Winner w1 = new Winner(name, score);
+        winners.add(w1);
+        PrintWriter leaderboards;
+        leaderboards = createWriter(dataPath("leaderboard.tsv"));
+        leaderboards.println("Name" + "\t" + "Score");
+        for( Winner w: winners)
+        {
+          leaderboards.println(w);
+        }
+        leaderboards.close();
+        score = 0;
         mode = 1;
       }
       
@@ -192,7 +202,7 @@ void gamemode3()
       setupgame();
       mode = 2;
     }
-    else if (key == ESC)
+    else if (key == ';')
     {
       p1.killBody();
       setupgame();

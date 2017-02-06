@@ -54,8 +54,7 @@ void setup()
   textFont(font);
   
   setupgame();
-  
-  leaderboards();
+  //leaderboards();
 }
 
 void setupgame()

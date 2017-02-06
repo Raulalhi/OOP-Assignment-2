@@ -7,15 +7,15 @@ class Winner
   String name;
   int score;
   
-  Winner(TableRow row)
+  Winner(String name, int score)
   {
-    this.name = row.getString("Name");
-    this.score = row.getInt("Score");
+    this.name = name;
+    this.score = score;
   }
   
   String toString()
   {
-    return name + " " + score;
+    return name + "  " + score;
   }
 }
 
@@ -24,9 +24,13 @@ void leaderboards()
   table = loadTable("leaderboard.tsv", "header");
   
   
+  
   for( TableRow row : table.rows())
-  {    
-    Winner w = new Winner(row);
+  {
+    String name = row.getString("Name");
+    int score = row.getInt("Score");
+    
+    Winner w = new Winner(name, score);
     winners.add(w);
   }
   
@@ -36,6 +40,7 @@ void leaderboards()
     scores[i] = w.score;
     i++;
   }
+  
 }
 
 void displayleadeboard()
