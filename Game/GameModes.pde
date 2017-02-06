@@ -15,6 +15,9 @@ void gamemode()
     case 3:
       gamemode3();
       break;
+      
+      case 4:
+      displayleadeboard();
   }
 }
 
@@ -27,7 +30,7 @@ void gamemode1()
   float cy = height/2;
   
   imageMode(CENTER);
-  image(bg, width/2, height/2);
+  image(bg, cx, cy);
 
   
   if(frameCount % 30 == 0)
@@ -59,6 +62,10 @@ void gamemode1()
   {
     textSize(40);
     fill (col);
+    if(mousePressed)
+    {
+      mode = 4;
+    }
 
   }
   text("LeaderBoards", cx, cy + 60);
@@ -78,7 +85,6 @@ void gamemode1()
     
   
 }
-
 
 void gamemode2()
 {
@@ -109,6 +115,11 @@ void gamemode2()
     text("SCORE:" + score, 70, 50);
 }
 
+
+String allowed_chars="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
+String name="";
+int name_index=0;
+
 void gamemode3()
 {
   float cx = width/2;
@@ -126,6 +137,46 @@ void gamemode3()
   text("Game Over", cx, cy -40);
   text("Play again?", cx, cy + 10);
   text("(Y/N)", cx, cy + 60);
+  
+
+  if(keyPressed && (name_index<12 || key==ENTER))
+    {
+      
+      delay(200);
+      if(key!=BACKSPACE && key!=ENTER)// && allowed_chars.indexOf(key) > 0)
+      {
+        name+=Character.toUpperCase(key);
+        name_index++;
+      }
+      if(key==ENTER && name_index>0) 
+      {
+        name="";
+        mode = 1;
+      }
+      
+      if(key==BACKSPACE && name_index>0)  
+      {
+        delay(200);
+        name_index--;
+        name=name.substring(0,name.length()-1);
+      }
+    }
+    else
+    {
+      if(key==BACKSPACE && name_index==12)  
+      {
+        delay(200);
+        name_index--;
+        name=name.substring(0,name.length()-1);
+      }
+    }
+    
+    // Displaying the characters
+    textSize(40);
+    textAlign(CENTER);
+    text(name, width *0.5, 70);
+  
+  
   for (int i = obstacles.size()-1; i>= 0; i--)
   {
     Obstacle o = obstacles.get(i);
@@ -135,13 +186,13 @@ void gamemode3()
   }
   if(keyPressed)
   {
-    if(key == 'y')
+    if(key == ENTER)
     {
       p1.killBody();
       setupgame();
       mode = 2;
     }
-    else if (key =='n')
+    else if (key == ESC)
     {
       p1.killBody();
       setupgame();

@@ -30,9 +30,36 @@ void leaderboards()
     winners.add(w);
   }
   
+  int i = 0;
   for(Winner w: winners)
   {
-    println(w);
+    scores[i] = w.score;
+    i++;
   }
+}
+
+void displayleadeboard()
+{
+  scores = sort(scores);
+  int j = 1;
+  float cx = width/2;
+  float cy = height/2;
+  float con = -150;
+  image(bg, cx, cy);
+  
+  
+  for(int i = 9; i >= 0; i--)
+  {
+    for(Winner w: winners)
+    {
+      if(scores[i] == w.score)
+      {
+        text(j + ". " + w, cx, cy + con);
+        j++;
+        con += 50;
+      }
+    }
+  }
+  
   
 }

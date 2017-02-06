@@ -7,26 +7,22 @@ class Speed extends Modifier
     audio = minim.loadFile("speed2.wav");
   }
   
-  void sound()
-  {
-    audio.play();
-    audio.rewind();
-  }
-  
   
   void modify()
   {
-    if(timer > timetolive)
-    {
-      die();
-    }
+    audio.play();
     
-    
+    timeset = false;
     for (Obstacle o : obstacles)
     {
       o.faster();
     }
     timer += timeDelta;
+    
+    if(timer > timetolive)
+    {
+      die();
+    }
   }
   
   void die()

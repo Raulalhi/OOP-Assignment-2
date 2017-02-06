@@ -40,7 +40,6 @@ class Player{
   {
     Vec2 pos = box2d.getBodyPixelCoord(player);
     float a = player.getAngle();
-    //body.setLinearVelocity(new Vec2(10,0));
     
     rectMode(CENTER);
     noFill();

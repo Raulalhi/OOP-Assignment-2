@@ -8,6 +8,7 @@ import org.jbox2d.dynamics.contacts.*;
 import org.jbox2d.dynamics.contacts.Contact;
 import ddf.minim.*;
 
+
 Box2DProcessing box2d;
 Minim minim;
 
@@ -101,7 +102,7 @@ void createObstacles()
 float timeDelta = 1.0f / 60.0f;
 float timer = 0;
 float spawn = 10;
-boolean timeset;
+boolean timeset = true;
 ArrayList<Modifier> modifiers = new ArrayList<Modifier>();
 
 void applyModifiers()
@@ -133,13 +134,11 @@ void applyModifiers()
     {
       Speed s = (Speed) p;
       s.modify();
-      s.sound();
     }
     else if(p instanceof Darker)
     {
       Darker d = (Darker) p;
       d.modify();
-      d.sound();
     }
     
   }
