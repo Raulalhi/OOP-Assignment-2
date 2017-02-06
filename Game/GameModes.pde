@@ -17,12 +17,12 @@ void gamemode()
       break;
       
       case 4:
-      leaderboards();
+      //leaderboards();
       displayleadeboard();
   }
 }
 
-color col = 255;
+color col = color(random(255), random(255),random(255));
 
 
 void gamemode1()
@@ -32,7 +32,9 @@ void gamemode1()
   
   imageMode(CENTER);
   image(bg, cx, cy);
-
+  
+  main.play();
+  main.rewind();
   
   if(frameCount % 30 == 0)
   {
@@ -117,7 +119,6 @@ void gamemode2()
 }
 
 
-String allowed_chars="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
 String name="";
 int name_index=0;
 
@@ -125,6 +126,14 @@ void gamemode3()
 {
   float cx = width/2;
   float cy = height/2;
+  
+  for (int i = obstacles.size()-1; i>= 0; i--)
+  {
+    Obstacle o = obstacles.get(i);
+    o.display();
+    obstacles.remove(i);
+    o.killBody();
+  }
   
   image(bg, width/2, height/2);
   
@@ -135,19 +144,19 @@ void gamemode3()
   fill(255);
   textSize(40);
   text("Game Over", cx, cy -40);
-  text("Play again?", cx, cy + 10);
-  text("(Y/N)", cx, cy + 60);
+  text("Enter Name:", cx, cy + 10);
   
 
   if(keyPressed && (name_index<12 || key==ENTER))
     {
       
       delay(200);
-      if(key!=BACKSPACE && key!=ENTER)// && allowed_chars.indexOf(key) > 0)
+      if(key!=BACKSPACE && key!=ENTER)
       {
         name+=Character.toUpperCase(key);
         name_index++;
       }
+      
       if(key==ENTER && name_index>0) 
       {
         Winner w1 = new Winner(name, score);
@@ -184,29 +193,5 @@ void gamemode3()
     // Displaying the characters
     textSize(40);
     textAlign(CENTER);
-    text(name, width *0.5, 70);
-  
-  
-  for (int i = obstacles.size()-1; i>= 0; i--)
-  {
-    Obstacle o = obstacles.get(i);
-    o.display();
-    obstacles.remove(i);
-    o.killBody();
-  }
-  if(keyPressed)
-  {
-    if(key == ENTER)
-    {
-      p1.killBody();
-      setupgame();
-      mode = 2;
-    }
-    else if (key == ';')
-    {
-      p1.killBody();
-      setupgame();
-      mode = 1;
-    }
-  }
+    text(name, cx, cy + 60);
 }

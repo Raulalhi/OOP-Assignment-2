@@ -15,16 +15,13 @@ class Winner
   
   String toString()
   {
-    return name + "  " + score;
+    return name + "\t" + score;
   }
 }
 
 void leaderboards()
 {
   table = loadTable("leaderboard.tsv", "header");
-  
-  
-  
   for( TableRow row : table.rows())
   {
     String name = row.getString("Name");
@@ -59,12 +56,25 @@ void displayleadeboard()
     {
       if(scores[i] == w.score)
       {
-        text(j + ". " + w, cx, cy + con);
+        fill(255);
+        textSize(32);
+        text(j + ". " + w.name + " " + w.score, cx, cy + con);
         j++;
         con += 50;
       }
     }
   }
+  
+  if(dist(mouseX, mouseY, cx, height - 25) < 32)
+  {
+    textSize(40);
+    fill (col);
+    if(mousePressed)
+    {
+      mode = 1;
+    }
+  }
+  text("BACK", cx, height - 25);
   
   
 }

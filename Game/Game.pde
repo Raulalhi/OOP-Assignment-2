@@ -12,6 +12,7 @@ import ddf.minim.*;
 Box2DProcessing box2d;
 Minim minim;
 
+AudioPlayer main;
 
 ArrayList<Obstacle> obstacles;
 
@@ -39,7 +40,8 @@ void setup()
   box2d.listenForCollisions();
 
   minim = new Minim(this);
-
+  main = minim.loadFile("main.wav");
+  
   obstacles = new ArrayList<Obstacle>();
 
   spawnTime = 1000;
@@ -54,7 +56,7 @@ void setup()
   textFont(font);
   
   setupgame();
-  //leaderboards();
+  leaderboards();
 }
 
 void setupgame()
