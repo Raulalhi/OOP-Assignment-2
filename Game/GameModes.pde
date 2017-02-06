@@ -69,6 +69,10 @@ void gamemode1()
   {
     textSize(40);
     fill (col);
+    if(mousePressed)
+    {
+      exit();
+    }
   }
   text("Exit", cx, cy + 120);
     
@@ -118,10 +122,10 @@ void gamemode3()
   strokeWeight(5);
   rect(cx, cy, 500, 250, 50);
   fill(255);
-  textSize(32);
-  text("Game Over", cx, cy -70);
-  text("Play again?", cx, cy -20);
-  text("(Y/N)", cx, cy + 30);
+  textSize(40);
+  text("Game Over", cx, cy -40);
+  text("Play again?", cx, cy + 10);
+  text("(Y/N)", cx, cy + 60);
   for (int i = obstacles.size()-1; i>= 0; i--)
   {
     Obstacle o = obstacles.get(i);

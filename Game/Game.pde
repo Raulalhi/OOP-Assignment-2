@@ -19,10 +19,7 @@ float spawnTime, spawnTime2;
 
 PImage bg;
 PImage bg2;
-PImage tex;
 
-float textureCoordX[] = {500, 0, 500};
-float textureCoordY[] = {0, 300, 300};
 PFont font;
 
 int score;
@@ -58,7 +55,6 @@ void setup()
 
   bg = loadImage("wallpaper.png");
   bg2 = loadImage("wallpaper3.png");
-  tex = loadImage("texture2.jpg");
   font = createFont("Pixel LCD-7.ttf", 32);
   textAlign(CENTER);
   textFont(font);
@@ -124,7 +120,7 @@ void applyModifiers()
       break;
 
       case 2:
-      d1.modify();
+      s1.modify();
       startTime2 = millis();
       break;
     }
