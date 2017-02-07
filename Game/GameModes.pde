@@ -33,8 +33,8 @@ void gamemode1()
   imageMode(CENTER);
   image(bg, cx, cy);
   
-    first.play();
-    main.rewind();
+  main.play();
+  main.rewind();
   
   if(frameCount % 30 == 0)
   {
@@ -93,7 +93,6 @@ void gamemode2()
 {
   image(bg2, width/2, height/2);
   main.play();
-  first.rewind();
   
   b1.display();
   b2.display();
@@ -149,7 +148,8 @@ void gamemode3()
   text("Game Over", cx, cy -40);
   text("Enter Name:", cx, cy + 10);
   
-
+  
+  
   if(keyPressed && (name_index<12 || key==ENTER))
     {
       
@@ -162,10 +162,10 @@ void gamemode3()
       
       if(key==ENTER && name_index>0) 
       {
-        Winner w1 = new Winner(name, score);
-        winners.add(w1);
         PrintWriter leaderboards;
         leaderboards = createWriter(dataPath("leaderboard.tsv"));
+        Winner w1 = new Winner(name, score);
+        winners.add(w1);
         leaderboards.println("Name" + "\t" + "Score");
         for( Winner w: winners)
         {
@@ -201,13 +201,8 @@ void gamemode3()
        setupgame();
        mode = 2;
      }
-     else if (key == ';')
-    {
-       p1.killBody();
-       setupgame();
-       mode = 1;
-    }
    }
+   
     // Displaying the characters
     textSize(40);
     textAlign(CENTER);
@@ -220,7 +215,26 @@ void gamemode3()
       fill (col);
       if(mousePressed)
       {
+        PrintWriter leaderboards;
+        leaderboards = createWriter(dataPath("leaderboard.tsv"));
+        Winner w1 = new Winner(name, score);
+        winners.add(w1);
+        leaderboards.println("Name" + "\t" + "Score");
+        for( Winner w: winners)
+        {
+          leaderboards.println(w);
+        }
+        leaderboards.close();
+        name = "";
+        score = 0;
         mode = 1;
+        
+         p1.killBody();
+         setupgame();
+         scores = null;
+         winners = null;
+         leaderboards();
+          mode = 1;
       }
     }
     text("MAIN MENU", cx, height - 25);

@@ -43,7 +43,6 @@ void setup()
 
   minim = new Minim(this);
   main = minim.loadFile("main.wav");
-  first = minim.loadFile("first.wav");
   collision = minim.loadFile("collision.mp3");
   obstacles = new ArrayList<Obstacle>();
 

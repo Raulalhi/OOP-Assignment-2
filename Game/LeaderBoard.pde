@@ -1,6 +1,6 @@
 Table table;
-int[] scores = new int[10];
-ArrayList<Winner> winners = new ArrayList<Winner>();
+int[] scores;
+ArrayList<Winner> winners;
 
 class Winner
 {
@@ -21,6 +21,8 @@ class Winner
 
 void leaderboards()
 {
+  winners = new ArrayList<Winner>();
+  scores = new int[10];
   table = loadTable("leaderboard.tsv", "header");
   for( TableRow row : table.rows())
   {
@@ -42,6 +44,7 @@ void leaderboards()
 
 void displayleadeboard()
 {
+  main.rewind();
   scores = sort(scores);
   int j = 1;
   float cx = width/2;
