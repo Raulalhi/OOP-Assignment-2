@@ -17,8 +17,8 @@ void gamemode()
       break;
       
       case 4:
-      //leaderboards();
       displayleadeboard();
+      break;
   }
 }
 
@@ -33,8 +33,8 @@ void gamemode1()
   imageMode(CENTER);
   image(bg, cx, cy);
   
-  main.play();
-  main.rewind();
+    first.play();
+    main.rewind();
   
   if(frameCount % 30 == 0)
   {
@@ -92,6 +92,9 @@ void gamemode1()
 void gamemode2()
 {
   image(bg2, width/2, height/2);
+  main.play();
+  first.rewind();
+  
   b1.display();
   b2.display();
 
@@ -169,6 +172,7 @@ void gamemode3()
           leaderboards.println(w);
         }
         leaderboards.close();
+        name = "";
         score = 0;
         mode = 1;
       }
@@ -189,9 +193,35 @@ void gamemode3()
         name=name.substring(0,name.length()-1);
       }
     }
-    
+    if(keyPressed)
+   {
+     if(key == ENTER)
+     {
+       p1.killBody();
+       setupgame();
+       mode = 2;
+     }
+     else if (key == ';')
+    {
+       p1.killBody();
+       setupgame();
+       mode = 1;
+    }
+   }
     // Displaying the characters
     textSize(40);
     textAlign(CENTER);
     text(name, cx, cy + 60);
+    
+    
+    if(dist(mouseX, mouseY, cx, height - 25) < 32)
+    {
+      textSize(40);
+      fill (col);
+      if(mousePressed)
+      {
+        mode = 1;
+      }
+    }
+    text("MAIN MENU", cx, height - 25);
 }

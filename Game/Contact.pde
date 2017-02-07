@@ -14,11 +14,12 @@ void beginContact(Contact cp)
   
   if (o1.getClass() == Player.class && o2.getClass() == Obstacle.class)
   {
-    
+    collision.play();
     mode = 3;
   } 
   else if (o2.getClass() == Player.class && o1.getClass() == Obstacle.class)
   {
+    collision.play();
     mode = 3;
   }
 }

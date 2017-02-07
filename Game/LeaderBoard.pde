@@ -75,6 +75,4 @@ void displayleadeboard()
     }
   }
   text("BACK", cx, height - 25);
-  
-  
 }

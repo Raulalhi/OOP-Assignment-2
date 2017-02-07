@@ -13,6 +13,8 @@ Box2DProcessing box2d;
 Minim minim;
 
 AudioPlayer main;
+AudioPlayer first;
+AudioPlayer collision;
 
 ArrayList<Obstacle> obstacles;
 
@@ -41,7 +43,8 @@ void setup()
 
   minim = new Minim(this);
   main = minim.loadFile("main.wav");
-  
+  first = minim.loadFile("first.wav");
+  collision = minim.loadFile("collision.mp3");
   obstacles = new ArrayList<Obstacle>();
 
   spawnTime = 1000;
@@ -64,16 +67,13 @@ void setupgame()
   p1 = null;
   b1 = null;
   b2 = null;
-
   p1 = new Player();
   b1 = new Boundary(width/2, height - 50, 400+width, 100);
   b2 = new Boundary(width/2, 50, 400+width, 100);
 }
 
 void draw()
-{
-  background(255);
-  
+{ 
   box2d.step();
   box2d.setGravity(0, -30);
 
