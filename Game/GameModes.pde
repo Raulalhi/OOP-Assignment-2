@@ -160,6 +160,16 @@ void gamemode3()
         name_index++;
       }
       
+      if(key==ENTER && name =="") 
+      {
+        
+        p1.killBody();
+        setupgame();
+        scores = null;
+        winners = null;
+        leaderboards();
+        mode = 1;
+      }
       if(key==ENTER && name_index>0) 
       {
         PrintWriter leaderboards;

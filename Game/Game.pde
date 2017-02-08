@@ -8,7 +8,6 @@ import org.jbox2d.dynamics.contacts.*;
 import org.jbox2d.dynamics.contacts.Contact;
 import ddf.minim.*;
 
-
 Box2DProcessing box2d;
 Minim minim;
 

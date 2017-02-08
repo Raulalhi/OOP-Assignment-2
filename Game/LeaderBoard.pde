@@ -53,7 +53,7 @@ void displayleadeboard()
   image(bg, cx, cy);
   
   
-  for(int i = 9; i >= 0; i--)
+  for(int i = 9; i >= 4; i--)
   {
     for(Winner w: winners)
     {
