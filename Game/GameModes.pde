@@ -42,7 +42,7 @@ void gamemode1()
   }
   textSize(64);
   fill(col);
-  text("Game Name", cx, cy -150);
+  text("The Dream", cx, cy -150);
   
   
   textSize(32);
