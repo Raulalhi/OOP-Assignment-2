@@ -3,11 +3,15 @@ A Game made with Processing
 
 #YouTube Video
 
-[![IMAGE ALT TEXT HERE](https://youtu.be/3You19PxRSs)](https://youtu.be/3You19PxRSs)
+[![Youtube Video]](https://youtu.be/3You19PxRSs)
 
 # Concept
+
 The aim of this assignment was to create a game with our knowledge of Processing and Object Oriented Programming.
-I wanted to create something fun, easy to play and replayable again and again. 
+
+I wanted to create something fun, easy to play and replayable again and again.
+In this game you control a small block, you have to keep away from the obstacles for the most time possible.
+The best thing is that it has no end, you can go as far as you want, keep trying until you beat your highscore or challenge some of your friends
 
 #Features
 
