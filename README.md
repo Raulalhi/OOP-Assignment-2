@@ -3,7 +3,7 @@ A Game made with Processing
 
 #YouTube Video
 
-[[Youtube Video]](https://youtu.be/3You19PxRSs)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/3You19PxRSs/0.jpg)](https://youtu.be/3You19PxRSs)
 
 # Concept
 
