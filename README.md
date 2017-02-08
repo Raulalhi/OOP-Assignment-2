@@ -3,7 +3,7 @@ A Game made with Processing
 
 #YouTube Video
 
-[![Youtube Video]](https://youtu.be/3You19PxRSs)
+[[Youtube Video]](https://youtu.be/3You19PxRSs)
 
 # Concept
 
@@ -24,10 +24,10 @@ The best thing is that it has no end, you can go as far as you want, keep trying
 
 #Controls
 
-W key to jump
-S key to go down
-Every option is clickable
-On the end scree, press ENTER to continue playing
+* W key to jump
+* S key to go down
+* Every option is clickable
+* On the end scree, press ENTER to continue playing
 
 #Functionality
 
