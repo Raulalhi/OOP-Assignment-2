@@ -12,7 +12,7 @@ class Darker extends Modifier
     
     audio.play();
     noStroke();
-    fill(0,100);
+    fill(0,150);
     rect(width/2,height/2,width, height);
     
     timer += timeDelta;

@@ -103,7 +103,14 @@ void gamemode2()
   applyModifiers();
 
   score += 1;
-
+  if(main.position() >= main.length() - 1000)
+  {
+    main.rewind();
+  }
+  if(!main.isPlaying())
+  {
+    main.play();
+  }
   for (int i = obstacles.size()-1; i>= 0; i--)
   {
     Obstacle o = obstacles.get(i);
