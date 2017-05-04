@@ -27,7 +27,7 @@ The best thing is that it has no end, you can go as far as you want, keep trying
 * W key to jump
 * S key to go down
 * Every option is clickable
-* On the end scree, press ENTER to continue playing
+* On the end screen press ENTER to continue playing
 
 #Functionality
 
