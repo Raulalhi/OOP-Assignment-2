@@ -1,7 +1,7 @@
 # OOP-Assignment-2
 A Game made with Processing
 
-#YouTube Video
+# YouTube Video
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/3You19PxRSs/0.jpg)](https://youtu.be/3You19PxRSs)
 
