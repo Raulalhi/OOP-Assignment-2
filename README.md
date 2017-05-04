@@ -13,7 +13,7 @@ I wanted to create something fun, easy to play and replayable again and again.
 In this game you control a small block, you have to keep away from the obstacles for the most time possible.
 The best thing is that it has no end, you can go as far as you want, keep trying until you beat your highscore or challenge some of your friends
 
-#Features
+# Features
 
 * Use of the box2d library to implements the physics
 * In-game music (provided by Undertale Soundtrack) using Minim library
@@ -22,14 +22,14 @@ The best thing is that it has no end, you can go as far as you want, keep trying
 * Display leaderboard using file I/O
 * Use of abstract classes
 
-#Controls
+# Controls
 
 * W key to jump
 * S key to go down
 * Every option is clickable
 * On the end screen press ENTER to continue playing
 
-#Functionality
+# Functionality
 
 * Everytime you move the player you change the linear velocity by either (0,10) or (0,-10)
 * Obstacles are generated every second. There is a 50/50 chance of spawing up or down.
